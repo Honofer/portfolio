@@ -4,6 +4,23 @@
     --text-color: #1f2937;
     --bg-color: #ffffff;
     --accent-bg: #f3f4f6;
+    --nav-bg: rgba(255, 255, 255, 0.95);
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --hero-bg: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+/* Dark mode variables */
+:root[data-theme="dark"] {
+    --primary-color: #60a5fa;
+    --secondary-color: #3b82f6;
+    --text-color: #e5e7eb;
+    --bg-color: #111827;
+    --accent-bg: #1f2937;
+    --nav-bg: rgba(17, 24, 39, 0.95);
+    --card-bg: #1f2937;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --hero-bg: linear-gradient(135deg, #111827 0%, #1f2937 100%);
 }
 
 * {
@@ -16,15 +33,18 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 nav {
     position: fixed;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--nav-bg);
     backdrop-filter: blur(5px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px var(--card-shadow);
     z-index: 1000;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .nav-content {
@@ -69,7 +89,8 @@ section {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    background: var(--hero-bg);
+    transition: background 0.3s;
 }
 
 .hero-content {
@@ -146,6 +167,11 @@ h3 {
     padding: 0.5rem 1rem;
     border-radius: 2rem;
     font-size: 0.9rem;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.skill-tags span:hover {
+    transform: scale(1.05);
 }
 
 .project-grid {
@@ -156,11 +182,11 @@ h3 {
 }
 
 .project-card {
-    background: var(--bg-color);
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 6px var(--card-shadow);
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 .project-card:hover {
@@ -193,11 +219,12 @@ h3 {
 .social-links a {
     color: var(--text-color);
     font-size: 1.5rem;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
 }
 
 .social-links a:hover {
     color: var(--primary-color);
+    transform: scale(1.2);
 }
 
 footer {
@@ -230,4 +257,21 @@ footer {
     .tagline {
         font-size: 1.2rem;
     }
+}
+
+/* Animations for elements */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
 }
